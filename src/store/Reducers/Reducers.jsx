@@ -8,6 +8,7 @@ import {
 
 const episodesInitialState = {
   data: [],
+  originalData: [], // новое поле для хранения исходных данных
   loading: false,
   error: null,
 };
@@ -24,6 +25,7 @@ const episodesReducer = (state = episodesInitialState, action) => {
       return {
         ...state,
         data: action.payload,
+        originalData: action.payload, // сохраняем исходные данные в поле originalData чтобы при фильтрации вернуться к ним
         loading: false,
         error: null,
       };
@@ -35,7 +37,7 @@ const episodesReducer = (state = episodesInitialState, action) => {
       };
     case SEARCH_EPISODES:
       const searchTerm = action.payload.toLowerCase();
-      const filteredEpisodes = state.data.filter((episode) =>
+      const filteredEpisodes = state.originalData.filter((episode) =>
         episode.name.toLowerCase().includes(searchTerm)
       );
       return {

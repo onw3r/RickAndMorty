@@ -26,14 +26,12 @@ export const fetchEpisodes = () => {
     }
   };
 };
-
 export const searchEpisodes = (searchTerm) => {
   return {
     type: SEARCH_EPISODES,
     payload: searchTerm,
   };
 };
-
 export const fetchEpisodesRequest = () => {
   return {
     type: FETCH_EPISODES_REQUEST,

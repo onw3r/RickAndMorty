@@ -23,11 +23,21 @@ const EpisodeList = () => {
         return acc;
     }, {});
 
+    const handleSearch = (event) => {
+        const searchTerm = event.target.value;
+        dispatch(searchEpisodes(searchTerm));
+    };
     return (
         <div className={style.main}>
+            <input
+                type='text'
+                className={style.search}
+                placeholder={'Поиск'}
+                onChange={handleSearch}
+            />
             {
                 Object.keys(episodesOfSeasons).map((seasonNumber, index) => (
-                    <div  key={index}>
+                    <div key={index}>
                         <h2 className={style.season}>Сезон {seasonNumber.slice(1)}</h2>
                         <div className={style.series_wrapper}>
                             {episodesOfSeasons[seasonNumber].map((episode, index) => (

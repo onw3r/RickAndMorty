@@ -1,8 +1,3 @@
-@font-face {
-    font-family: 'RickAndMorty';
-    src: url(/src/fonts/get_schwifty.ttf);
-}
-
 .header {
     margin-top: 35px;
     color: rgb(8, 240, 8);
