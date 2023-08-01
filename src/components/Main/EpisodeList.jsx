@@ -38,7 +38,7 @@ const EpisodeList = () => {
             {
                 Object.keys(episodesOfSeasons).map((seasonNumber, index) => (
                     <div key={index}>
-                        <h2 className={style.season}>Сезон {seasonNumber.slice(1)}</h2>
+                        <h2 className={style.season}>Сезон {seasonNumber.slice(2)}</h2>
                         <div className={style.series_wrapper}>
                             {episodesOfSeasons[seasonNumber].map((episode, index) => (
                                 <CardComponent
