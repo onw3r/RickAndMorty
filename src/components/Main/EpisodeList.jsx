@@ -5,25 +5,40 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchEpisodes, searchEpisodes } from '../../store/Actions/Actions.jsx';
 
 const EpisodeList = () => {
-  const dispatch = useDispatch();
-  const episodes = useSelector(state => state.episodes);
+    const dispatch = useDispatch();
+    const episodes = useSelector(state => state.episodes);
 
-  useEffect(() => {
-    dispatch(fetchEpisodes()); // Загрузка списка эпизодов при монтировании компонента
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(fetchEpisodes()); // Загрузка списка эпизодов при монтировании компонента
+    }, [dispatch]);
 
 
-  console.log(episodes.data)
+    const episodesOfSeasons = episodes.data.reduce((acc, episode) => {
+        const seasonNumber = episode.episode.split('E')[0];
+        if (acc.hasOwnProperty(seasonNumber)) {
+            acc[seasonNumber].push(episode);
+        } else {
+            acc[seasonNumber] = [episode];
+        }
+        return acc;
+    }, {});
 
     return (
         <div className={style.main}>
             {
-                episodes.data.map((item,index)=>(
+                Object.keys(episodesOfSeasons).map((seasonNumber, index) => (
+                    <div  key={index}>
+                        <h2 className={style.season}>Сезон {seasonNumber.slice(1)}</h2>
+                        <div className={style.series_wrapper}>
+                            {episodesOfSeasons[seasonNumber].map((episode, index) => (
+                                <CardComponent
+                                    info={episode}
+                                    key={index}
+                                />
+                            ))}
+                        </div>
 
-                    <CardComponent
-                        info={item}
-                        key={index}
-                    />
+                    </div>
                 ))
             }
 
