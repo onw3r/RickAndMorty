@@ -6,3 +6,7 @@
     background-color:rgb(204, 202, 54);
     padding: 5px;
 }
+a{
+    text-decoration: none;
+    color: black;
+}

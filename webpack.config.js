@@ -28,11 +28,10 @@ module.exports = {
   target,
   plugins,
   devtool: 'source-map',
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   devServer: {
     hot: true,
     compress: true,
-
     port:3000,
     open: '/',
     historyApiFallback: true,
