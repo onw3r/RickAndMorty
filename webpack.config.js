@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const plugins = [
   new MiniCssExtractPlugin({
-    filename: '[name].[contenthash].css',
+    filename: '[name].css',
   }),
   new HtmlWebpackPlugin({
     template: './src/index.html',
@@ -30,9 +30,9 @@ module.exports = {
   devtool: 'source-map',
   entry: './src/index.js',
   devServer: {
-    static: './dist',
     hot: true,
     compress: true,
+
     port:3000,
     open: '/',
     historyApiFallback: true,
