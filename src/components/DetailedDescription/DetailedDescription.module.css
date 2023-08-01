@@ -1,0 +1,21 @@
+.card {
+    position: relative;
+    width: 1180px;
+    height: 100%;
+    border: 16px groove rgb(15, 175, 15);
+    border-radius: 6px;
+    background-color:rgb(204, 202, 54);
+    padding: 5px;
+    margin: 0 auto;
+
+}
+.link_wrapper{
+    position: absolute;
+    top: 5px;
+    right: 15px;
+}
+.character_wrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}

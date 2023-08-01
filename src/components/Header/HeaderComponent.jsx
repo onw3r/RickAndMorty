@@ -1,11 +1,12 @@
 import React from 'react';
 import style from './HeaderComponent.module.css'
+import { Link } from 'react-router-dom';
 
 const HeaderComponent = () => {
     return (
-        <div className={style.header}>
+        <Link to={'/'} className={style.header}>
            Rick and Morty
-        </div>
+        </Link>
     )
 }
 
