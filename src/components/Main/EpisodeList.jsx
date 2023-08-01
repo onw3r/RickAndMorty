@@ -12,6 +12,7 @@ const EpisodeList = () => {
     dispatch(fetchEpisodes()); // Загрузка списка эпизодов при монтировании компонента
   }, [dispatch]);
 
+
   console.log(episodes.data)
 
     return (

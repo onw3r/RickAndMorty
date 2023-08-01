@@ -6,16 +6,24 @@ export const FETCH_EPISODES_FAILURE = 'FETCH_EPISODES_FAILURE';
 export const SEARCH_EPISODES = 'SEARCH_EPISODES';
 
 export const fetchEpisodes = () => {
-  return (dispatch) => {
-    dispatch(fetchEpisodesRequest());
-    axios
-      .get('https://rickandmortyapi.com/api/episode')
-      .then((response) => {
-        dispatch(fetchEpisodesSuccess(response.data.results));
-      })
-      .catch((error) => {
-        dispatch(fetchEpisodesFailure(error.message));
-      });
+  return async (dispatch) => {
+    try {
+      let allEpisodes = [];
+      let page = 1;
+      let response = await axios.get(`https://rickandmortyapi.com/api/episode?page=${page}`);
+
+      while (response.data.info.next) {
+        allEpisodes = [...allEpisodes, ...response.data.results];
+        page++;
+        response = await axios.get(`https://rickandmortyapi.com/api/episode?page=${page}`);
+      }
+
+      allEpisodes = [...allEpisodes, ...response.data.results];
+
+      dispatch(fetchEpisodesSuccess(allEpisodes));
+    } catch (error) {
+      dispatch(fetchEpisodesFailure(error));
+    }
   };
 };
 
